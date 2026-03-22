@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="topbar">
+        <div class="language-switcher">
+          <span id="language-label">Language</span>
+          <select id="language-select" aria-label="Language">
+            <option value="en">English</option>
+            <option value="ko">Korean</option>
+          </select>
+        </div>
+      </div>
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow" id="hero-eyebrow">Study Timer</p>
+          <h1 id="hero-title">Made by C</h1>
+          <p class="hero-description" id="hero-description">
+            Set your own time or start with a preset, and every finished session is saved to a text file.
+          </p>
+        </div>
+
+        <div class="timer-panel" id="timer-panel">
+          <div class="setup-layout" id="setup-layout">
+            <div class="mode-row">
+              <button class="mode-button active" data-mode="timer">Timer</button>
+              <button class="mode-button" data-mode="stopwatch">Stopwatch</button>
+            </div>
+
+            <form class="timer-form subject-form">
+              <label>
+                <div class="subject-header-row">
+                  <span id="subject-label">Choose Subject</span>
+                  <button id="manage-subjects-button" class="ghost-button" type="button">Edit</button>
+                </div>
+                <div class="subject-picker">
+                  <select id="subject-select"></select>
+                  <div class="subject-manager" id="subject-manager" hidden>
+                    <div class="subject-manager-list" id="subject-manager-list"></div>
+                    <div class="subject-create-inline">
+                      <input
+                        id="new-subject-input"
+                        type="text"
+                        maxlength="60"
+                        placeholder="Example: Science"
+                      />
+                      <button id="create-subject-button" class="ghost-button" type="button">Create</button>
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </form>
+
+            <div class="mode-stage">
+              <div class="mode-track" id="mode-track">
+                <section class="mode-page">
+                  <div class="preset-row">
+                    <button class="preset-button" data-minutes="30">30m</button>
+                    <button class="preset-button" data-minutes="45">45m</button>
+                    <button class="preset-button" data-minutes="60">60m</button>
+                  </div>
+
+                  <form id="timer-form" class="timer-form timer-only-form">
+                    <label class="minutes-label-wrap">
+                      <span id="minutes-label">Custom Time</span>
+                      <div class="minutes-stepper">
+                        <button id="decrease-minutes" class="stepper-button" type="button" aria-label="Decrease time">-</button>
+                        <input id="minutes-input" type="number" min="1" max="720" value="30" />
+                        <button id="increase-minutes" class="stepper-button" type="button" aria-label="Increase time">+</button>
+                      </div>
+                    </label>
+                  </form>
+                </section>
+
+                <section class="mode-page stopwatch-page">
+                  <div class="stopwatch-page-blank"></div>
+                </section>
+              </div>
+            </div>
+
+            <div class="setup-footer">
+              <div class="setup-timer-block">
+                <div class="timer-display" id="timer-display">30:00</div>
+                <div class="status-line" id="status-line">Ready</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="focus-layout" id="focus-layout">
+            <div class="focus-topline">
+              <span class="focus-label">Time Remaining</span>
+              <strong id="focus-subject-name">Study Session</strong>
+            </div>
+            <div class="focus-main">
+              <div class="focus-timer-wrap">
+                <div class="focus-timer" id="focus-timer">30:00</div>
+                <div class="status-line focus-status" id="focus-status-line">대기 중</div>
+              </div>
+              <div class="focus-side">
+                <article class="focus-stat-card">
+                  <span>This Subject</span>
+                  <strong id="subject-total">0s</strong>
+                </article>
+                <article class="focus-stat-card">
+                  <span>Total Studied</span>
+                  <strong id="all-time-total">0s</strong>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button id="start-button" class="primary-button">Start</button>
+            <button id="pause-button" class="secondary-button">Pause</button>
+            <button id="quit-button" class="ghost-button quit-button" type="button">Quit</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="history-shell">
+        <article class="history-card history-pager-card">
+          <div class="history-tabs">
+            <button class="history-tab active" data-history-view="daily" id="daily-title">Daily</button>
+            <button class="history-tab" data-history-view="weekly" id="weekly-title">Weekly</button>
+            <button class="history-tab" data-history-view="monthly" id="monthly-title">Monthly</button>
+            <button class="history-tab" data-history-view="recent" id="recent-title">Recent Sessions</button>
+          </div>
+          <div class="card-header">
+            <h2 id="history-panel-title">Daily</h2>
+            <span id="history-panel-count">0 items</span>
+          </div>
+          <div id="history-panel-content" class="history-list empty-state">No records yet.</div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

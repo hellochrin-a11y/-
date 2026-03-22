@@ -1,0 +1,9 @@
+{
+  "name": "study-timer-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Text-file based study timer web app",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
